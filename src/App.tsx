@@ -34,7 +34,7 @@ function App() {
             <div className="dashboard__sidebar">
             <div className="user-profile">
                 <div className='user-profile__image'>
-                <img src="/images/image-jeremy.png" alt="" />
+                <img src={process.env.PUBLIC_URL + "/images/image-jeremy.png"} alt="Jeremy Robson" />
                 </div>
                 <div className='user-profile__text'>
                 <span>Report for</span>
@@ -53,7 +53,7 @@ function App() {
             <ul className='activity-grid'>
                 {data.map((item, index) => (
                 <li className='activity-card' style={{  background: `linear-gradient(to bottom, ${bgColors[index]} 0%, rgba(22, 4, 34, 0.2) 100%)`  }} key={index}>
-                    <img src={`/images/icon-${item.title.toLowerCase().replace(" ", "-")}.svg`} alt={item.title} />
+                    <img src={process.env.PUBLIC_URL + `/images/icon-${item.title.toLowerCase().replace(" ", "-")}.svg`} alt={item.title} />
                     <div className='activity-card__inner'>
                     <div className="activity-card__header">
                         <h2>{item.title}</h2>
