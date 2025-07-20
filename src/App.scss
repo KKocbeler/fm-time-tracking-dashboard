@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: "Rubik", sans-serif;
+  font-size: 18px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--navy-950);
+}
+
+:root {
+  /* Primary */
+  --purple-600: hsl(246, 80%, 60%);
+  --orange-300: hsl(15, 100%, 70%);
+  --blue-300: hsl(195, 74%, 62%);
+  --pink-400: hsl(348, 100%, 68%);
+  --green-400: hsl(145, 58%, 55%);
+  --purple-700: hsl(264, 64%, 52%);
+  --yellow-300: hsl(43, 84%, 65%);
+
+  /* Neutral */
+  --navy-950: hsl(226, 43%, 10%);
+  --navy-900: hsl(235, 46%, 20%);
+  --purple-500: hsl(235, 45%, 61%);
+  --navy-200: hsl(236, 100%, 87%);
+}
+
+li {
+  list-style-type: none;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 30px;
+  width: 1440px;
+
+  @media (max-width: 1200px) {
+    width: 325px;
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__sidebar {
+    background-color: var(--navy-900);
+    border-radius: 20px;
+
+    .user-profile {
+      background-color: var(--purple-600);
+      border-radius: 20px;
+      padding: 30px;
+
+      @media (max-width:1200px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .user-profile__image {
+        width: fit-content;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        margin-bottom: 40px;
+
+        @media (max-width: 1200px) {
+            margin-bottom: 0;
+        }
+        
+        img {
+            display: block;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+
+            @media (max-width:1200px) {
+                width: 50px; height: 50px;
+            }
+        }
+      }
+
+      .user-profile__text {
+        padding-bottom: 40px;
+        color: var(--navy-200);
+
+        @media (max-width:1200px) {
+            padding-bottom: 0;
+        }
+
+        h1 {
+            font-size: 44px;
+            font-weight: 400;
+            color: #fff;
+
+            @media (max-width:1200px) {
+                font-size: 24px;
+            }
+        }
+      }
+    }
+
+    .time-filter {
+      padding: 20px;
+
+      @media (max-width: 1200px) {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+      }
+
+      > li {
+        cursor: pointer;
+        margin: 20px 0;
+        color: var(--purple-500);
+
+        &:hover {
+            color: var(--navy-200);
+        }
+        
+
+        &.active {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .dashboard__content {
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      height: 100%;
+
+      @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+      }
+
+      .activity-card {
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+
+        @media (max-width: 1200px) {
+            grid-template-columns: 1fr;
+            width: 350px; height: 180px;
+        }
+
+        img {
+          display: block;
+          position: absolute;
+          top: -5px; right: 20px;
+          z-index: 1;
+        }
+
+        .activity-card__inner {
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          border-radius: 15px;
+          z-index: 2;
+          padding: 32px 30px;
+          background-color: var(--navy-900);
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: var(--purple-600);
+          }
+
+          .activity-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h2 {
+              font-size: 20px;
+            }
+
+            .dropdown-menu {
+                position: relative;
+
+                .icon {
+                    font-size: 30px;
+                }
+                .dropdown {
+                    position: absolute;
+                    top: 150%; right: 0;
+                    padding: 10px 20px;
+                    border-radius: 10px;
+                    font-size: 14px;
+                    z-index: 99;
+                    visibility: visible;
+                    opacity: 0;
+                    transform: translateY(-20px);
+                    transition: all .3s;
+                    &.show {
+                        visibility: visible;
+                        opacity: 1;
+                        transform: translateY(-10px);
+
+                        @media (max-width: 1200px) {
+                            top: 0; right: 0;
+                            transform: translate(-2rem, 0);
+                        }
+
+                    }
+
+                    @media (max-width: 1200px) {
+                        top: 0; right: 0;
+                        transform: translate(-1rem, 0);
+                    }
+
+                    li {
+                        margin: 5px 0;
+                        transition: all .3s;
+                        &:hover {
+                            color: var(--navy-900);
+                        }
+                    }
+                }
+            }
+          }
+
+          .activity-card__body {
+            > div {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+
+                @media (max-width: 1200px) {
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+
+            .current {
+                font-size: 60px;
+
+                @media (max-width: 1200px) {
+                    font-size: 24px;
+                }           
+            }
+
+            .previous {
+                color: var(--navy-200);
+
+                @media (max-width: 1200px) {
+                    font-size: 15px;
+                } 
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
